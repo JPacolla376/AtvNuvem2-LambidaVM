@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CloudPortfolio - Crie seu Portfólio na Nuvem</title>
+
+    <link rel="icon" href="cloud.svg" type="image/svg+xml">
+
+    <meta property="og:title" content="CloudPortfolio - Crie seu Portfólio">
+    <meta property="og:description" content="Crie e publique seu portfólio pessoal na nuvem em segundos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fatec-cloudportfolio-app.s3.us-east-1.amazonaws.com/index.html">
+    <meta property="og:image" content="https://fatec-cloudportfolio-app.s3.us-east-1.amazonaws.com/cloud.svg">
+    <meta property="og:image:type" content="image/svg+xml">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main id="editor-mode" class="active-mode">
+    <header class="app-header">
+        <div class="header-logo-container">
+            <lottie-player src="Networking.json" background="transparent" speed="1" style="width: 80px; height: 80px;"
+                           loop autoplay></lottie-player>
+            <span class="logo-text">CloudPortfolio</span>
+        </div>
+    </header>
+
+    <div class="container animate-up">
+        <form id="portfolio-form">
+
+            <div class="form-section">
+                <h3><i class="ri-user-smile-line"></i> 1. Sua Identidade</h3>
+                <div class="input-grid">
+                    <div class="input-wrapper">
+                        <label>Nome Completo</label>
+                        <input type="text" id="nome" placeholder="Ex: Ana Souza">
+                    </div>
+                    <div class="input-wrapper">
+                        <label>Profissão / Título</label>
+                        <input type="text" id="profissao" placeholder="Ex: Arquiteta de Software">
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <label>Mini Biografia (Sobre você)</label>
+                    <textarea id="bio" rows="3"
+                              placeholder="Um parágrafo curto sobre quem você é e o que faz."></textarea>
+                </div>
+                <div class="input-wrapper">
+                    <label>Sua Foto de Perfil</label>
+                    <input type="file" id="foto-upload" accept="image/png, image/jpeg, image/jpg">
+                    <small class="input-hint">
+                        <i class="ri-information-line"></i>
+                        Recomendado: Imagem quadrada, máx 4.5MB
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3><i class="ri-palette-line"></i> 2. Estilo Visual</h3>
+                <div class="input-grid">
+                    <div class="input-wrapper">
+                        <label>Tema Base</label>
+                        <input type="hidden" id="tema-base" value="light">
+                        <div class="theme-options">
+                            <label class="theme-option">
+                                <input type="radio" name="theme" value="light" checked>
+                                <div class="theme-box" id="theme-light-box">
+                                    <span>Claro</span>
+                                </div>
+                            </label>
+                            <label class="theme-option">
+                                <input type="radio" name="theme" value="dark">
+                                <div class="theme-box" id="theme-dark-box">
+                                    <span>Escuro</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-wrapper">
+                        <label>Cor de Destaque</label>
+                        <div class="color-picker-wrapper">
+                            <input type="color" id="cor-destaque" value="#6200ea">
+                            <span id="cor-valor">#6200ea</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-wrapper">
+                    <label>Estilo da Fonte</label>
+                    <input type="hidden" id="fonte-estilo" value="sans-serif">
+                    <div class="custom-select-trigger" id="fonte-trigger">
+                        <span>Moderna (Sans-Serif)</span>
+                        <i class="ri-arrow-down-s-line"></i>
+                    </div>
+                    <div class="custom-options" id="fonte-options">
+                        <div class="custom-option" data-value="sans-serif">Moderna (Sans-Serif)</div>
+                        <div class="custom-option" data-value="serif">Clássica (Serif)</div>
+                        <div class="custom-option" data-value="monospace">Tech (Monospace)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3><i class="ri-layout-masonry-line"></i> 3. Layout</h3>
+                <div class="layout-options">
+                    <label class="layout-option">
+                        <input type="radio" name="layout" value="center" checked>
+                        <div class="layout-box">
+                            <i class="ri-align-center"></i>
+                            <span>Centralizado</span>
+                        </div>
+                    </label>
+                    <label class="layout-option">
+                        <input type="radio" name="layout" value="split">
+                        <div class="layout-box">
+                            <i class="ri-layout-column-line"></i>
+                            <span>Esquerda</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3><i class="ri-link"></i> 4. Conexões</h3>
+                <div class="input-wrapper">
+                    <label><i class="ri-linkedin-fill"></i> LinkedIn URL</label>
+                    <input type="url" id="linkedin" placeholder="https://linkedin.com/in/seu-usuario">
+                </div>
+                <div class="input-wrapper">
+                    <label><i class="ri-github-fill"></i> GitHub URL</label>
+                    <input type="url" id="github" placeholder="https://github.com/seu-usuario">
+                </div>
+                <div class="input-wrapper">
+                    <label><i class="ri-instagram-line"></i> Instagram URL</label>
+                    <input type="url" id="instagram" placeholder="https://instagram.com/seu-usuario">
+                </div>
+                <div class="input-wrapper">
+                    <label>Texto do Botão Principal</label>
+                    <input type="text" id="cta-texto" value="Entre em Contato">
+                </div>
+                <div class="input-wrapper">
+                    <label>Link do Botão Principal (E-mail ou Link)</label>
+                    <input type="text" id="cta-link" placeholder="mailto:seu@email.com ou https://...">
+                </div>
+            </div>
+
+        </form>
+
+        <button id="btn-gerar-site" class="btn-primary full-width">
+            <span>Gerar Meu Site</span>
+            <i class="ri-magic-line"></i>
+        </button>
+    </div>
+</main>
+
+<main id="preview-mode" style="display: none;">
+    <div class="phone-mockup animate-up">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+            <div id="site-preview" class="preview-content theme-light layout-center">
+                <img id="preview-foto" src="https://via.placeholder.com/150/e0e0e0/999999?text=Foto"
+                     alt="Foto de Perfil" class="profile-pic">
+                <h1 id="preview-nome">Seu Nome</h1>
+                <h2 id="preview-profissao">Sua Profissão</h2>
+                <p id="preview-bio" class="bio-text">Sua biografia aparecerá aqui.</p>
+                <div id="preview-social" class="social-links"></div>
+                <a id="preview-cta" href="#" class="btn-preview" target="_blank">Entre em Contato</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<button id="toggle-btn" class="floating-toggle">
+    <i class="ri-eye-line"></i> <span>Ver Preview</span>
+</button>
+
+<div id="modal-overlay" class="modal-overlay">
+    <div class="modal animate-pop">
+        <div id="modal-icon-container" class="modal-icon success">
+            <i id="modal-icon-shape" class="ri-checkbox-circle-fill"></i>
+        </div>
+        <h2 id="modal-title">Site Criado!</h2>
+        <p id="modal-message">Seu portfólio profissional está online.</p>
+        <div id="modal-actions-success" class="modal-actions">
+            <a id="link-final-site" href="#" target="_blank" class="btn-primary">Visitar Site <i
+                    class="ri-external-link-line"></i></a>
+            <button class="btn-secondary btn-fechar-modal">Fechar</button>
+        </div>
+        <div id="modal-actions-error" class="modal-actions" style="display: none;">
+            <button class="btn-primary btn-fechar-modal">OK, entendi</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
