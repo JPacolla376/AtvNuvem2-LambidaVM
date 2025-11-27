@@ -90,7 +90,7 @@ Observação crítica: um sistema serverless depende de serviços AWS, então a 
 
 Clone o repositório:
 
-git clone https://github.com/seu-usuario/cloudportfolio.git
+git clone [https://github.com/seu-usuario/cloudportfolio.git](https://github.com/JPacolla376/AtvNuvem2-LambidaVM.git)
 cd cloudportfolio
 
 
